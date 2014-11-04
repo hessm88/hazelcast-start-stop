@@ -1,0 +1,37 @@
+<enunciate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="http://enunciate.codehaus.org/schemas/enunciate-1.28.xsd"
+           includeReferenceTrailInErrors="true">
+  <disable-rule id="ruby.warnings"/>
+  <disable-rule id="c.warnings"/>
+  <disable-rule id="php.warnings"/>
+
+  <!--import these packages for documentation-->
+  <api-import pattern="hazelcast.startstop.webapp.*" />
+
+  <namespaces>
+    <namespace id="v1" uri="http://hazelcast-start-stop/v1" />
+  </namespaces>
+
+  <services>
+    <rest defaultRestSubcontext="/" />
+  </services>
+
+  <webapp />
+
+  <modules>
+    <amf disabled="true"/>
+    <csharp disabled="true"/>
+    <obj-c disabled="true"/>
+    <c disabled="true"/>
+
+    <jersey>
+      <init-param name="com.sun.jersey.config.property.resourceConfigClass"
+                  value="com.sun.jersey.api.core.DefaultResourceConfig"/>
+    </jersey>
+
+    <docs splashPackage="hazelcast.startstop.webapp" />
+    <api-classes>hazelcast.startstop.webapp.config.WebConfig</api-classes>
+    <spring-app disabled="false" contextLoaderListenerClass="org.springframework.web.context.ContextLoaderListener"/>
+  </modules>
+
+</enunciate>
