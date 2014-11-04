@@ -12,7 +12,7 @@ public class TestService implements MessageListener<String> {
 
   private String name;
   private ITopic<String> commandTopic;
-  private boolean isRunning = false;
+  private boolean serviceIsRunning = false;
 
   public TestService() {
     this.name = "service-" + System.nanoTime();
@@ -50,27 +50,27 @@ public class TestService implements MessageListener<String> {
     controlService(message);
   }
 
-  public boolean isRunning() {
-    return isRunning;
+  public boolean isServiceIsRunning() {
+    return serviceIsRunning;
   }
 
-  private void setIsRunning(boolean value) {
-    isRunning = value;
+  private void setServiceIsRunning(boolean value) {
+    serviceIsRunning = value;
   }
 
   private void start() {
-    if (!isRunning()) {
+    if (!isServiceIsRunning()) {
       System.out.println("Starting " + name);
-      setIsRunning(true);
+      setServiceIsRunning(true);
 
       commandTopic.publish("start");
     }
   }
 
   private void stop() {
-    if (isRunning()) {
+    if (isServiceIsRunning()) {
       System.out.println("Stopping " + name);
-      setIsRunning(false);
+      setServiceIsRunning(false);
 
       commandTopic.publish("stop");
     }
